@@ -1,0 +1,8 @@
+version: 3.7
+
+services:
+  documentArchiveDBAutoTest:
+    image: document-archive-db:latest
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: myPassword

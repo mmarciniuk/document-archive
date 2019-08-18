@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>documentArchive</artifactId>
+        <groupId>pl.mm</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pl.mm.documentArchive</groupId>
+    <artifactId>database</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <docker.image.build.skip>false</docker.image.build.skip>
+        <docker.image.pre-integration-test.skip>true</docker.image.pre-integration-test.skip>
+
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>${docker.image.prefix}:latest</name>
+                            <alias>${docker.image.prefix}</alias>
+                            <build>
+                                <dockerFile>${project.basedir}/docker/Dockerfile</dockerFile>
+                            </build>
+                        </image>
+                        <image>
+                            <name>${docker.image.prefix}:${project.version}</name>
+                            <alias>${docker.image.prefix}</alias>
+                            <build>
+                                <dockerFile>${project.basedir}/docker/Dockerfile</dockerFile>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>buildImage</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${docker.image.build.skip}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
