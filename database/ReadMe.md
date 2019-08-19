@@ -13,7 +13,7 @@ Example:
 
 ##### To run builded image use command:
 
-`docker run -t -d -p 3337:3306 --hostname documentArchive --name document-archive-db-mysql document-archive-db-mysql:<tag>` 
+`docker run -t -d -p 3337:3306 -e MYSQL_ROOT_PASSWORD=secretPassword --hostname documentArchive --name document-archive-db-mysql document-archive-db-mysql:<tag>` 
 
 
 # NamingConventions for database
