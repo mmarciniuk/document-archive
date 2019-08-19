@@ -7,10 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pl.mm.documentArchive.daoRepository.BaseTest;
 import pl.mm.documentArchive.daoRepository.RoleRepository;
 import pl.mm.documentArchive.daoRepository.UserRepository;
@@ -22,7 +19,9 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
 
-public class ITUserRepositoryTest extends BaseTest {
+public class ITUserRepositoryUnitTest extends BaseTest {
+
+	static final String ADD_USERS_GROUP = "ADD_USERS_GROUP";
 
 	@Autowired
 	private UserRepository userRepository;
@@ -32,7 +31,7 @@ public class ITUserRepositoryTest extends BaseTest {
 	private User adminUser;
 
 	private User createAdminUser() {
-		Role adminRole = roleRepository.findByName(ITRoleRepositoryTest.ADMIN_ROLE_NAME).orElse(null);
+		Role adminRole = roleRepository.findByName(ITRoleRepositoryUnitTest.ADMIN_ROLE_NAME).orElse(null);
 		List<Role> roleList = new ArrayList<>();
 		roleList.add(adminRole);
 
@@ -49,44 +48,6 @@ public class ITUserRepositoryTest extends BaseTest {
 		return userToAdd;
 	}
 
-	@BeforeClass
-	public void addAdminUser() {
-		adminUser = userRepository.save(createAdminUser());
-	}
-
-	@AfterClass
-	public void removeAdminUser() {
-		userRepository.delete(adminUser);
-	}
-
-	@Test(expectedExceptions = {org.springframework.dao.DataIntegrityViolationException.class})
-	public void tryToInsertAdminUserAgain() {
-		userRepository.save(createAdminUser());
-	}
-
-	@Test(priority = 1)
-	public void findUserById() {
-		User foundUser = userRepository.findById(adminUser.getId()).orElse(null);
-		Assert.assertEquals(Objects.requireNonNull(foundUser).getUserName(), adminUser.getUserName());
-	}
-
-	@Test(priority = 2)
-	public void findUserByUuid() {
-		User foundUser = userRepository.findByUuid(adminUser.getUuid(), User.class).orElse(null);
-		Assert.assertEquals(Objects.requireNonNull(foundUser).getUserName(), adminUser.getUserName());
-	}
-
-	@Test(priority = 3, dataProvider = "usersTestDataProvider")
-	public void addUser(User user) {
-		userRepository.save(user);
-	}
-
-	@Test(priority = 4, dataProvider = "usersTestDataProvider")
-	public void deleteUser(User user) {
-		User userToDelete = userRepository.findByUserName(user.getUserName()).orElse(null);
-		userRepository.delete(userToDelete);
-	}
-
 	@DataProvider
 	public Object[][] usersTestDataProvider() throws IOException {
 		ClassPathResource classPathResource = new ClassPathResource("/usersList/usersList.xlsx");
@@ -94,7 +55,7 @@ public class ITUserRepositoryTest extends BaseTest {
 		XSSFSheet sheet = workbook.getSheet("usersList");
 
 		List<User> users = new ArrayList<>();
-		for(int i=1; i<sheet.getPhysicalNumberOfRows(); i++) {
+		for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
 			XSSFRow row = sheet.getRow(i);
 			List<Role> listOfRolesForUser = getUserRolesFromWorkBook(row.getCell(0));
 
@@ -117,6 +78,59 @@ public class ITUserRepositoryTest extends BaseTest {
 	private List<Role> getUserRolesFromWorkBook(XSSFCell cellWithRoles) {
 		List<String> rolesOfUser = Arrays.asList(cellWithRoles.getStringCellValue().split("/|"));
 		return (List<Role>) roleRepository.findByName(rolesOfUser);
+	}
+
+	@BeforeClass
+	public void addAdminUser() {
+		User createdAdminUser = createAdminUser();
+
+		User userToRemove = userRepository.findByUserName(createdAdminUser.getUserName()).orElse(null);
+		if(userToRemove != null) {
+			userRepository.delete(userToRemove);
+		}
+
+		adminUser = userRepository.save(createdAdminUser);
+	}
+
+	@AfterClass
+	public void removeAdminUser() {
+		userRepository.delete(adminUser);
+	}
+
+	@Test(expectedExceptions = {org.springframework.dao.DataIntegrityViolationException.class})
+	public void tryToInsertAdminUserAgain() {
+		userRepository.save(createAdminUser());
+	}
+
+	@Test(priority = 1, dependsOnGroups = {ITRoleRepositoryUnitTest.GROUP_NAME})
+	public void findUserById() {
+		User foundUser = userRepository.findById(adminUser.getId()).orElse(null);
+		Assert.assertEquals(Objects.requireNonNull(foundUser).getUserName(), adminUser.getUserName());
+	}
+
+	@Test(priority = 2)
+	public void findUserByUuid() {
+		User foundUser = userRepository.findByUuid(adminUser.getUuid(), User.class).orElse(null);
+		Assert.assertEquals(Objects.requireNonNull(foundUser).getUserName(), adminUser.getUserName());
+	}
+
+	@Test(dataProvider = "usersTestDataProvider")
+	public void addUserPrerequisite(User user) {
+		User userToRemove = userRepository.findByUserName(user.getUserName()).orElse(null);
+		if(userToRemove != null) {
+			userRepository.delete(userToRemove);
+		}
+	}
+
+	@Test(dataProvider = "usersTestDataProvider", dependsOnMethods = {"addUserPrerequisite"}, groups = {ADD_USERS_GROUP})
+	public void addUser(User user) {
+		userRepository.save(user);
+	}
+
+	@Test(dataProvider = "usersTestDataProvider", dependsOnMethods = {"addUser"})
+	public void deleteUser(User user) {
+		User userToDelete = userRepository.findByUserName(user.getUserName()).orElse(null);
+		userRepository.delete(userToDelete);
 	}
 
 }

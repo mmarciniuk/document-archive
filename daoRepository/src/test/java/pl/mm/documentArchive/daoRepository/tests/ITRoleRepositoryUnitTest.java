@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ITRoleRepositoryTest extends BaseTest {
+public class ITRoleRepositoryUnitTest extends BaseTest {
 
 	static final String GROUP_NAME = "ITRoleRepositoryTestGroup";
 	static final String ADMIN_ROLE_NAME = "ADMIN";
