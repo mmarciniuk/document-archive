@@ -2,6 +2,7 @@ package pl.mm.documentArchive.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Length;
@@ -48,6 +49,7 @@ public class User extends TransactionInfo {
 			inverseJoinColumns = @JoinColumn(name = "RoleId"))
 	private Collection<Role> roles;
 
+	@ToString.Exclude
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "documentOwner")
 	private Collection<Document> documents;
