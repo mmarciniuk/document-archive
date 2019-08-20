@@ -1,0 +1,38 @@
+package pl.mm.documentArchive.daoRepository.test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import pl.mm.documentArchive.daoRepository.BaseTest;
+import pl.mm.documentArchive.daoRepository.RoleRepository;
+import pl.mm.documentArchive.daoRepository.dataProvider.RoleTestDataProvider;
+import pl.mm.documentArchive.model.Role;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ITRoleRepositoryUnitTest extends BaseTest {
+
+	static final String CHECK_IF_ROLE_EXISTS_GROUP = "checkIfRoleExists";
+
+	@Autowired
+	private RoleRepository roleRepository;
+
+	private List<Role> roles = new ArrayList<>();
+
+	@Test(groups = {CHECK_IF_ROLE_EXISTS_GROUP}, dataProviderClass = RoleTestDataProvider.class, dataProvider = RoleTestDataProvider.ROLES_DATA_PROVIDER_NAME)
+	public void checkIfRoleExists(Role role) {
+		Role foundRole = roleRepository.findByRoleName(role.getRoleName()).orElse(null);
+		Assert.assertNotNull(foundRole);
+		roles.add(foundRole);
+	}
+
+	@Test(dependsOnMethods = {"checkIfRoleExists"}, groups = {CHECK_IF_ROLE_EXISTS_GROUP})
+	public void findRolesByUuid() {
+		for (Role expectedRole : roles) {
+			Role actualRole = roleRepository.findByUuid(expectedRole.getUuid(), Role.class).orElse(null);
+			Assert.assertEquals(actualRole, expectedRole);
+		}
+	}
+
+}

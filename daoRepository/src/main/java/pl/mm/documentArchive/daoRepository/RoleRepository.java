@@ -14,8 +14,8 @@ public interface RoleRepository extends TransactionInfoRepository<Role, Long> {
 	String BEAN_NAME = "roleRepository";
 
 	@Query("SELECT r FROM Role r WHERE r.roleName=:roleName")
-	Optional<Role> findByName(@Param("roleName") String roleName);
+	Optional<Role> findByRoleName(@Param("roleName") String roleName);
 	@Query("SELECT r FROM Role r WHERE r.roleName IN (:listOfRoles)")
-	Iterable<Role> findByName(@Param("listOfRoles")List<String> listOfRoles);
+	Iterable<Role> findByRoleName(@Param("listOfRoles")List<String> listOfRoles);
 
 }
