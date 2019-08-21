@@ -11,7 +11,8 @@ import pl.mm.documentArchive.model.User;
 
 public class ITDocumentRepositoryUnitTest extends BaseTest {
 
-	public static final String DELETE_DOCUMENTS_GROUP = "deleteDocumentsGroup";
+	static final String ADD_DOCUMENTS_GROUP = "ADD_DOCUMENTS_GROUP";
+	static final String DELETE_DOCUMENTS_GROUP = "deleteDocumentsGroup";
 
 	@Autowired
 	private UserRepository userRepository;
@@ -20,7 +21,7 @@ public class ITDocumentRepositoryUnitTest extends BaseTest {
 	private DocumentRepository documentRepository;
 
 	@Test(dependsOnGroups = {ITUserRepositoryUnitTest.ADD_USERS_GROUP}, dataProviderClass = DocumentTestDataProvider.class,
-			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME)
+			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {ADD_DOCUMENTS_GROUP})
 	public void addTestDocuments(Document document) {
 		User foundUser = userRepository.findByUserName(document.getDocumentOwner().getUserName()).orElse(null);
 
@@ -29,7 +30,8 @@ public class ITDocumentRepositoryUnitTest extends BaseTest {
 		documentRepository.save(document);
 	}
 
-	@Test(dependsOnMethods = {"addTestDocuments"}, dataProviderClass = DocumentTestDataProvider.class,
+	@Test(dependsOnMethods = {"addTestDocuments"}, dependsOnGroups = {ITDocumentMetaDataRepositoryUnitTest.ADD_DOCUMENT_META_DATA_GROUP},
+			dataProviderClass = DocumentTestDataProvider.class,
 			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {DELETE_DOCUMENTS_GROUP})
 	public void deleteDocuments(Document document) {
 		Document documentToDelete = documentRepository.findByDocumentName(document.getDocumentName()).orElse(null);
