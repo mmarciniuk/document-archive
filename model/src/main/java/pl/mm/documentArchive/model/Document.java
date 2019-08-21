@@ -2,6 +2,7 @@ package pl.mm.documentArchive.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -22,6 +23,7 @@ public class Document extends TransactionInfo {
 	@ManyToOne
 	@JoinColumn(name = "DocumentOwnerId", nullable = false)
 	private User documentOwner;
+	@ToString.Exclude
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "document")
 	private Collection<DocumentMetaData> documentMetaDataCollection;
 
