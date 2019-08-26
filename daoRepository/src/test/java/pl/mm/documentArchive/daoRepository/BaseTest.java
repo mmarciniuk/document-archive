@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
 
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.AUTO_CONFIGURED)
-@ContextConfiguration(classes = {JpaTestConfiguration.class})
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ContextConfiguration(classes = {JpaTestConfigurationDefault.class})
 @DataJpaTest
 @Test(timeOut = 60000)
 public abstract class BaseTest extends AbstractTestNGSpringContextTests {

@@ -18,18 +18,18 @@
 
 	<profiles>
 		<profile>
-			<id>LOCAL</id>
+			<id>TestLocal</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<spring.profiles.active>LOCAL</spring.profiles.active>
+				<spring.profiles.active>TestLocal</spring.profiles.active>
 			</properties>
 		</profile>
 		<profile>
-			<id>DOCKER</id>
+			<id>TestDocker</id>
 			<properties>
-				<spring.profiles.active>DOCKER</spring.profiles.active>
+				<spring.profiles.active>TestDocker</spring.profiles.active>
 			</properties>
 		</profile>
 	</profiles>

@@ -18,19 +18,9 @@ import javax.sql.DataSource;
 
 @EnableJpaRepositories(basePackages = "pl.mm.documentArchive.daoRepository")
 @EnableTransactionManagement
-@PropertySource("jpaTestConfigurationLocal.properties")
+@PropertySource(value = {"jpaTestConfiguration-Default.properties"})
 @Configuration
-public class JpaTestConfiguration {
-
-	/*@Profile("LOCAL")
-	@PropertySource("jpaTestConfigurationLocal.properties")
-	@Configuration
-	public static class LocalConfiguration {}
-
-	@Profile("DOCKER")
-	@PropertySource("jpaTestConfigurationDocker.properties")
-	@Configuration
-	public static class DockerConfiguration {}*/
+public class JpaTestConfigurationDefault {
 
 	@Autowired
 	private Environment environment;
