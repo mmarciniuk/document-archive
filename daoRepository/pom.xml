@@ -18,15 +18,6 @@
 
 	<profiles>
 		<profile>
-			<id>TestLocal</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<spring.profiles.active>TestLocal</spring.profiles.active>
-			</properties>
-		</profile>
-		<profile>
 			<id>TestDocker</id>
 			<properties>
 				<spring.profiles.active>TestDocker</spring.profiles.active>

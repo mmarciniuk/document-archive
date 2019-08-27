@@ -1,10 +1,11 @@
-package pl.mm.documentArchive.daoRepository;
+package pl.mm.documentArchive.daoRepository.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -18,9 +19,10 @@ import javax.sql.DataSource;
 
 @EnableJpaRepositories(basePackages = "pl.mm.documentArchive.daoRepository")
 @EnableTransactionManagement
-@PropertySource(value = {"jpaTestConfiguration-Default.properties"})
+@Import(value = {JpaTestConfigurationTestDocker.class})
+@PropertySource("/config/jpaTestConfiguration.properties")
 @Configuration
-public class JpaTestConfigurationDefault {
+public class JpaTestConfigurationBase {
 
 	@Autowired
 	private Environment environment;
@@ -36,7 +38,7 @@ public class JpaTestConfigurationDefault {
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
-																	   @Autowired DataSource dataSource) {
+	                                                                   @Autowired DataSource dataSource) {
 		return builder.dataSource(dataSource)
 				.packages("pl.mm.documentArchive.model")
 				.persistenceUnit("documentArchiveModel")
