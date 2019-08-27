@@ -1,3 +1,5 @@
+Build status: [![Build Status](https://travis-ci.org/mmarciniuk/document-archive.svg?branch=master)](https://travis-ci.org/mmarciniuk/document-archive)
+
 # Scope
 * Creating account
 * Login/Logout
