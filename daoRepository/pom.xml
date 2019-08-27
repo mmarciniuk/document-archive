@@ -19,8 +19,14 @@
 	<profiles>
 		<profile>
 			<id>TestDocker</id>
+			<activation>
+				<property>
+					<name>spring.testProfiles.daoRepository.active</name>
+					<value>TestDaoRepositoryWithDocker</value>
+				</property>
+			</activation>
 			<properties>
-				<spring.profiles.active>TestDocker</spring.profiles.active>
+				<spring.profiles.active>TestDaoRepositoryWithDocker</spring.profiles.active>
 			</properties>
 		</profile>
 	</profiles>
