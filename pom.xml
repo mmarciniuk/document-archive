@@ -9,6 +9,7 @@
 		<module>daoRepository</module>
 		<module>service</module>
 		<module>webApp</module>
+		<module>testHelpers</module>
 	</modules>
 
 	<parent>

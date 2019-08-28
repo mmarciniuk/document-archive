@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * @author Mariusz Marciniuk
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class DataProviderHelper {
 
 	/**
