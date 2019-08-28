@@ -22,7 +22,7 @@ public class ITDocumentRepositoryUnitTest extends BaseTest {
 
 	@Test(dependsOnGroups = {ITUserRepositoryUnitTest.ADD_USERS_GROUP}, dataProviderClass = DocumentTestDataProvider.class,
 			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {ADD_DOCUMENTS_GROUP})
-	public void addTestDocuments(Document document) {
+	public void addTestDocument(Document document) {
 		User foundUser = userRepository.findByUserName(document.getDocumentOwner().getUserName()).orElse(null);
 
 		document.setDocumentOwner(foundUser);
@@ -30,10 +30,10 @@ public class ITDocumentRepositoryUnitTest extends BaseTest {
 		documentRepository.save(document);
 	}
 
-	@Test(dependsOnMethods = {"addTestDocuments"}, dependsOnGroups = {ITDocumentMetaDataRepositoryUnitTest.ADD_DOCUMENT_META_DATA_GROUP},
+	@Test(dependsOnMethods = {"addTestDocument"}, dependsOnGroups = {ITDocumentMetaDataRepositoryUnitTest.ADD_DOCUMENT_META_DATA_GROUP},
 			dataProviderClass = DocumentTestDataProvider.class,
 			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {DELETE_DOCUMENTS_GROUP})
-	public void deleteDocuments(Document document) {
+	public void deleteDocument(Document document) {
 		Document documentToDelete = documentRepository.findByDocumentName(document.getDocumentName()).orElse(null);
 		documentRepository.delete(documentToDelete);
 	}
