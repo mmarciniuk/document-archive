@@ -54,6 +54,7 @@
 			<groupId>pl.mm.documentArchive</groupId>
 			<artifactId>testHelpers</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -62,22 +63,18 @@
 			<version>7.0.0-beta7</version>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>${apache.poi.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>${apache.poi.version}</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/../testHelpers/src/main/resources/</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</testResource>
+		</testResources>
+
 		<plugins>
 			<plugin>
 				<groupId>io.fabric8</groupId>
