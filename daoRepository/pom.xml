@@ -68,7 +68,7 @@
 	<build>
 		<testResources>
 			<testResource>
-				<directory>${project.basedir}/../testHelpers/src/main/resources/</directory>
+				<directory>${project.basedir}/../testHelpers/src/test/resources/</directory>
 				<includes>
 					<include>**/*.*</include>
 				</includes>
