@@ -5,12 +5,12 @@ import pl.mm.documentArchive.model.Role;
 
 public class DataProviderLoaderFromXlsRole extends DataProviderLoaderFromXls<Role> {
 
-	public DataProviderLoaderFromXlsRole(ResourcesType resourcesType, String pathToXls, String sheetName) {
-		super(resourcesType, pathToXls, sheetName);
+	public DataProviderLoaderFromXlsRole(String pathToXls, String sheetName) {
+		super(pathToXls, sheetName);
 	}
 
 	@Override
-	public Role mapInputData(Object obj) throws Exception {
+	public Role mapInputData(Object obj) {
 		XSSFRow row = (XSSFRow) obj;
 		Role roleFormSheet = new Role();
 		roleFormSheet.setRoleName(row.getCell(0).getStringCellValue());
