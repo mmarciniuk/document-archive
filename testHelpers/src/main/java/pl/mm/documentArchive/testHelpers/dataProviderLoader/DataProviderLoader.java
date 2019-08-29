@@ -4,6 +4,6 @@ public interface DataProviderLoader<T> {
 
 	Object[][] loadTestData() throws Exception;
 
-	T mapInputData(Object obj);
+	T mapInputData(Object obj) throws Exception;
 
 }

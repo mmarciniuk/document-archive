@@ -8,7 +8,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import pl.mm.documentArchive.testHelpers.DataProviderHelper;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public abstract class DataProviderLoaderFromXls<T> implements DataProviderLoader
 	}
 
 	@Override
-	public Object[][] loadTestData() throws IOException {
+	public Object[][] loadTestData() throws Exception {
 		AbstractResource resource;
 		if (resourcesType == ResourcesType.CLASS_PATH_RESOURCES) {
 			resource = new ClassPathResource(pathToXls);
@@ -51,6 +50,6 @@ public abstract class DataProviderLoaderFromXls<T> implements DataProviderLoader
 	}
 
 	@Override
-	public abstract T mapInputData(Object obj);
+	public abstract T mapInputData(Object obj) throws Exception;
 
 }
