@@ -52,7 +52,7 @@ public class User extends TransactionInfo {
 
 	@ToString.Exclude
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "documentOwner")
+	@OneToMany(mappedBy = "documentOwner", cascade = CascadeType.REMOVE)
 	private Collection<Document> documents;
 
 }

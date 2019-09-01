@@ -1,4 +1,4 @@
-package pl.mm.documentArchive.service;
+package pl.mm.documentArchive.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,8 +13,11 @@ import pl.mm.documentArchive.daoRepository.RoleRepository;
 import pl.mm.documentArchive.daoRepository.UserRepository;
 import pl.mm.documentArchive.model.Role;
 import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.service.BaseDocumentArchiverService;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service(UserService.BEAN_NAME)
@@ -34,14 +37,24 @@ public class UserService extends BaseDocumentArchiverService<User> implements Us
 	}
 
 	@Transactional
-	public void addUser(User user) {
-		user = setDefaultVariables(user);
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		repository.save(user);
+	public void addUser(User user) throws UserAlreadyExists {
+		User foundUser = ((UserRepository)repository).findByUserName(user.getUserName()).orElse(null);
+		if(foundUser == null) {
+			Role userRole = roleRepository.findByRoleName("USER").orElse(null);
+			List<Role> roles = new ArrayList<>();
+			roles.add(userRole);
+
+			user.setRoles(roles);
+			user = setDefaultVariables(user);
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			repository.save(user);
+		} else {
+			throw new UserAlreadyExists(foundUser);
+		}
 	}
 
 	@Transactional
-	public void removeUser(User user) {
+	public void deleteUser(User user) {
 		User foundUser = findByUserName(user.getUserName());
 		repository.delete(foundUser);
 	}
