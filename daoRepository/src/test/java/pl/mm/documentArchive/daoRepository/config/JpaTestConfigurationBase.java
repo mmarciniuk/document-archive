@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "pl.mm.documentArchive.daoRepository")
 @EnableTransactionManagement
 @Import(value = {JpaTestConfigurationTestDaoRepositoryWithDocker.class})
-@PropertySource("/config/jpaTestConfiguration.properties")
+@PropertySource("/config/testConfiguration.properties")
 @Configuration
 public class JpaTestConfigurationBase {
 
