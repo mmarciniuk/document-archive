@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DataProviderLoaderFromXls<T> implements DataProviderLoader<T> {
-	private String classPathToXls;
-	private String sheetName;
+	private final String classPathToXls;
+	private final String sheetName;
 
+	@SuppressWarnings("WeakerAccess")
 	public DataProviderLoaderFromXls(String classPathToXls, String sheetName) {
 		this.classPathToXls = classPathToXls;
 		this.sheetName = sheetName;
