@@ -17,6 +17,7 @@ public class Document extends TransactionInfo {
 	private String documentName;
 	@Column(name = "Extension", length = 10, nullable = false)
 	private String extension;
+	@ToString.Exclude
 	@Lob
 	@Column(name = "DocumentBlob", nullable = false)
 	private byte[] documentBlob;
