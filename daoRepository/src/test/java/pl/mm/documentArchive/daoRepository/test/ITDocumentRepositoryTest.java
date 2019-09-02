@@ -1,15 +1,16 @@
 package pl.mm.documentArchive.daoRepository.test;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
-import pl.mm.documentArchive.daoRepository.BaseTest;
+import pl.mm.documentArchive.daoRepository.BaseDaoRepositoryTest;
 import pl.mm.documentArchive.daoRepository.DocumentRepository;
 import pl.mm.documentArchive.daoRepository.UserRepository;
 import pl.mm.documentArchive.daoRepository.dataProvider.DocumentTestDataProvider;
 import pl.mm.documentArchive.model.Document;
 import pl.mm.documentArchive.model.User;
 
-public class ITDocumentRepositoryUnitTest extends BaseTest {
+public class ITDocumentRepositoryTest extends BaseDaoRepositoryTest {
 
 	static final String ADD_DOCUMENTS_GROUP = "ADD_DOCUMENTS_GROUP";
 	static final String DELETE_DOCUMENTS_GROUP = "deleteDocumentsGroup";
@@ -20,7 +21,11 @@ public class ITDocumentRepositoryUnitTest extends BaseTest {
 	@Autowired
 	private DocumentRepository documentRepository;
 
-	@Test(dependsOnGroups = {ITUserRepositoryUnitTest.ADD_USERS_GROUP}, dataProviderClass = DocumentTestDataProvider.class,
+	public ITDocumentRepositoryTest() {
+		super(LoggerFactory.getLogger(ITDocumentRepositoryTest.class));
+	}
+
+	@Test(dependsOnGroups = {ITUserRepositoryTest.ADD_USERS_GROUP}, dataProviderClass = DocumentTestDataProvider.class,
 			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {ADD_DOCUMENTS_GROUP})
 	public void addTestDocument(Document document) {
 		User foundUser = userRepository.findByUserName(document.getDocumentOwner().getUserName()).orElse(null);
@@ -30,7 +35,7 @@ public class ITDocumentRepositoryUnitTest extends BaseTest {
 		documentRepository.save(document);
 	}
 
-	@Test(dependsOnMethods = {"addTestDocument"}, dependsOnGroups = {ITDocumentMetaDataRepositoryUnitTest.ADD_DOCUMENT_META_DATA_GROUP},
+	@Test(dependsOnMethods = {"addTestDocument"}, dependsOnGroups = {ITDocumentMetaDataRepositoryTest.ADD_DOCUMENT_META_DATA_GROUP},
 			dataProviderClass = DocumentTestDataProvider.class,
 			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {DELETE_DOCUMENTS_GROUP})
 	public void deleteDocument(Document document) {

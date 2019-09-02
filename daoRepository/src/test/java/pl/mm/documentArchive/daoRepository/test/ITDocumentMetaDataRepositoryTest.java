@@ -1,15 +1,16 @@
 package pl.mm.documentArchive.daoRepository.test;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
-import pl.mm.documentArchive.daoRepository.BaseTest;
+import pl.mm.documentArchive.daoRepository.BaseDaoRepositoryTest;
 import pl.mm.documentArchive.daoRepository.DocumentMetaDataRepository;
 import pl.mm.documentArchive.daoRepository.DocumentRepository;
 import pl.mm.documentArchive.daoRepository.dataProvider.DocumentMetaDataTestDataProvider;
 import pl.mm.documentArchive.model.Document;
 import pl.mm.documentArchive.model.DocumentMetaData;
 
-public class ITDocumentMetaDataRepositoryUnitTest extends BaseTest {
+public class ITDocumentMetaDataRepositoryTest extends BaseDaoRepositoryTest {
 
 	static final String ADD_DOCUMENT_META_DATA_GROUP = "ADD_DOCUMENT_META_DATA_GROUP";
 	static final String DELETE_DOCUMENT_META_DATA_GROUP = "REMOVE_DOCUMENT_META_DATA_GROUP";
@@ -19,10 +20,14 @@ public class ITDocumentMetaDataRepositoryUnitTest extends BaseTest {
 	@Autowired
 	private DocumentMetaDataRepository documentMetaDataRepository;
 
+	public ITDocumentMetaDataRepositoryTest() {
+		super(LoggerFactory.getLogger(ITDocumentMetaDataRepositoryTest.class));
+	}
+
 
 	@Test(dataProviderClass = DocumentMetaDataTestDataProvider.class,
 			dataProvider = DocumentMetaDataTestDataProvider.DOCUMENT_META_DATA_TEST_DATA_PROVIDER_NAME,
-			dependsOnGroups = {ITDocumentRepositoryUnitTest.ADD_DOCUMENTS_GROUP}, groups = {ADD_DOCUMENT_META_DATA_GROUP})
+			dependsOnGroups = {ITDocumentRepositoryTest.ADD_DOCUMENTS_GROUP}, groups = {ADD_DOCUMENT_META_DATA_GROUP})
 	public void addDocumentMetaData(DocumentMetaData documentMetaData) {
 		Document documentToFind = documentMetaData.getDocument();
 		Document foundDocument = documentRepository.findByDocumentNameAndUserName(documentToFind.getDocumentName(),

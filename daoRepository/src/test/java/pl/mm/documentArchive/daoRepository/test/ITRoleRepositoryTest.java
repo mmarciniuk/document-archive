@@ -1,9 +1,10 @@
 package pl.mm.documentArchive.daoRepository.test;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pl.mm.documentArchive.daoRepository.BaseTest;
+import pl.mm.documentArchive.daoRepository.BaseDaoRepositoryTest;
 import pl.mm.documentArchive.daoRepository.RoleRepository;
 import pl.mm.documentArchive.daoRepository.dataProvider.RoleTestDataProvider;
 import pl.mm.documentArchive.model.Role;
@@ -11,14 +12,18 @@ import pl.mm.documentArchive.model.Role;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ITRoleRepositoryUnitTest extends BaseTest {
+public class ITRoleRepositoryTest extends BaseDaoRepositoryTest {
 
 	static final String CHECK_IF_ROLE_EXISTS_GROUP = "checkIfRoleExists";
+
+	public ITRoleRepositoryTest() {
+		super(LoggerFactory.getLogger(ITRoleRepositoryTest.class));
+	}
 
 	@Autowired
 	private RoleRepository roleRepository;
 
-	private List<Role> roles = new ArrayList<>();
+	private final List<Role> roles = new ArrayList<>();
 
 	@Test(groups = {CHECK_IF_ROLE_EXISTS_GROUP}, dataProviderClass = RoleTestDataProvider.class, dataProvider = RoleTestDataProvider.ROLES_DATA_PROVIDER_NAME)
 	public void checkIfRoleExists(Role role) {
