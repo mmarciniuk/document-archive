@@ -9,6 +9,7 @@ Build status: [![Build Status](https://travis-ci.org/mmarciniuk/document-archive
     * pdf
   * Adding meta data for document
 * Listing added documents
+  * User can see only documents added by himself
 * Editing meta data information
 * Removing added document
 * Web GUI
