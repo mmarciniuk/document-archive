@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.mm.documentArchive.daoRepository.RoleRepository;
-import pl.mm.documentArchive.daoRepository.dataProvider.RoleTestDataProvider;
 import pl.mm.documentArchive.model.Role;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class ITRoleRepositoryTest extends BaseDaoRepositoryTest {
 
 	private final List<Role> roles = new ArrayList<>();
 
-	@Test(groups = {CHECK_IF_ROLE_EXISTS_GROUP}, dataProviderClass = RoleTestDataProvider.class, dataProvider = RoleTestDataProvider.ROLES_DATA_PROVIDER_NAME)
+	@Test(groups = {CHECK_IF_ROLE_EXISTS_GROUP}, dataProvider = ROLES_DATA_PROVIDER_NAME)
 	public void checkIfRoleExists(Role role) {
 		Role foundRole = roleRepository.findByRoleName(role.getRoleName()).orElse(null);
 		Assert.assertNotNull(foundRole);

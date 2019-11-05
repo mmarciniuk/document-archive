@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 import pl.mm.documentArchive.daoRepository.DocumentRepository;
 import pl.mm.documentArchive.daoRepository.UserRepository;
-import pl.mm.documentArchive.daoRepository.dataProvider.DocumentTestDataProvider;
 import pl.mm.documentArchive.model.Document;
 import pl.mm.documentArchive.model.User;
 
@@ -18,8 +17,8 @@ public class ITDocumentRepositoryTest extends BaseDaoRepositoryTest {
 	@Autowired
 	private DocumentRepository documentRepository;
 
-	@Test(dependsOnGroups = {ITUserRepositoryTest.ADD_USERS_GROUP}, dataProviderClass = DocumentTestDataProvider.class,
-			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {ADD_DOCUMENTS_GROUP})
+	@Test(dependsOnGroups = {ITUserRepositoryTest.ADD_USERS_GROUP}, dataProvider = DOCUMENTS_TEST_DATA_PROVIDER_NAME,
+			groups = {ADD_DOCUMENTS_GROUP})
 	public void addTestDocument(Document document) {
 		User foundUser = userRepository.findByUserName(document.getDocumentOwner().getUserName()).orElse(null);
 
@@ -28,9 +27,9 @@ public class ITDocumentRepositoryTest extends BaseDaoRepositoryTest {
 		documentRepository.save(document);
 	}
 
-	@Test(dependsOnMethods = {"addTestDocument"}, dependsOnGroups = {ITDocumentMetaDataRepositoryTest.ADD_DOCUMENT_META_DATA_GROUP},
-			dataProviderClass = DocumentTestDataProvider.class,
-			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {DELETE_DOCUMENTS_GROUP})
+	@Test(dependsOnMethods = {"addTestDocument"},
+			dependsOnGroups = {ITDocumentMetaDataRepositoryTest.ADD_DOCUMENT_META_DATA_GROUP},
+			dataProvider = DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {DELETE_DOCUMENTS_GROUP})
 	public void deleteDocument(Document document) {
 		Document documentToDelete = documentRepository.findByDocumentName(document.getDocumentName()).orElse(null);
 		documentRepository.delete(documentToDelete);
