@@ -63,7 +63,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>startDaoRepositoryDbForAutoTest</id>
+                        <id>startDataBaseFor${artifactId}Test</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>start</goal>
@@ -75,14 +75,15 @@
                                     <name>${docker.image.prefix}:latest</name>
                                     <run>
                                         <env>
-                                            <MYSQL_USER>root</MYSQL_USER>
-                                            <MYSQL_ROOT_PASSWORD>myPassword</MYSQL_ROOT_PASSWORD>
+                                            <MYSQL_USER>${docker.container.run.env.MYSQL_USER}</MYSQL_USER>
+                                            <MYSQL_ROOT_PASSWORD>${docker.container.run.env.MYSQL_ROOT_PASSWORD}
+                                            </MYSQL_ROOT_PASSWORD>
                                         </env>
                                         <ports>
-                                            <port>33123:3306</port>
+                                            <port>${docker.container.run.ports.port}</port>
                                         </ports>
                                         <wait>
-                                            <time>15000</time>
+                                            <time>${docker.container.run.wait.timeMs}</time>
                                         </wait>
                                     </run>
                                 </image>
@@ -90,7 +91,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>stopDaoRepositoryDbForAutoTest</id>
+                        <id>stopDataBaseFor${artifactId}TestAfterTests</id>
                         <phase>post-integration-test</phase>
                         <goals>
                             <goal>stop</goal>
@@ -120,6 +121,9 @@
                     <includes>
                         <include>
                             **/IT*.java
+                        </include>
+                        <include>
+                            **/*IT.java
                         </include>
                     </includes>
                     <excludes>

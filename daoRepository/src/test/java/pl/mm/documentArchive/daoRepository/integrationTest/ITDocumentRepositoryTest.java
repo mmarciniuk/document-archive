@@ -1,9 +1,7 @@
-package pl.mm.documentArchive.daoRepository.test;
+package pl.mm.documentArchive.daoRepository.integrationTest;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
-import pl.mm.documentArchive.daoRepository.BaseDaoRepositoryTest;
 import pl.mm.documentArchive.daoRepository.DocumentRepository;
 import pl.mm.documentArchive.daoRepository.UserRepository;
 import pl.mm.documentArchive.daoRepository.dataProvider.DocumentTestDataProvider;
@@ -17,13 +15,8 @@ public class ITDocumentRepositoryTest extends BaseDaoRepositoryTest {
 
 	@Autowired
 	private UserRepository userRepository;
-
 	@Autowired
 	private DocumentRepository documentRepository;
-
-	public ITDocumentRepositoryTest() {
-		super(LoggerFactory.getLogger(ITDocumentRepositoryTest.class));
-	}
 
 	@Test(dependsOnGroups = {ITUserRepositoryTest.ADD_USERS_GROUP}, dataProviderClass = DocumentTestDataProvider.class,
 			dataProvider = DocumentTestDataProvider.DOCUMENTS_TEST_DATA_PROVIDER_NAME, groups = {ADD_DOCUMENTS_GROUP})

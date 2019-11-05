@@ -1,9 +1,7 @@
-package pl.mm.documentArchive.daoRepository.test;
+package pl.mm.documentArchive.daoRepository.integrationTest;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
-import pl.mm.documentArchive.daoRepository.BaseDaoRepositoryTest;
 import pl.mm.documentArchive.daoRepository.RoleRepository;
 import pl.mm.documentArchive.daoRepository.UserRepository;
 import pl.mm.documentArchive.daoRepository.dataProvider.UserTestDataProvider;
@@ -21,10 +19,6 @@ public class ITUserRepositoryTest extends BaseDaoRepositoryTest {
 	private UserRepository userRepository;
 	@Autowired
 	private RoleRepository roleRepository;
-
-	public ITUserRepositoryTest() {
-		super(LoggerFactory.getLogger(ITUserRepositoryTest.class));
-	}
 
 	private void loadRolesFromDataBase(User user) {
 		List<Role> loadedRolesFromDb = new ArrayList<>();

@@ -1,4 +1,4 @@
-package pl.mm.documentArchive.service.test;
+package pl.mm.documentArchive.service.integrationTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,15 +6,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.mm.documentArchive.daoRepository.RoleRepository;
-import pl.mm.documentArchive.model.Role;
 import pl.mm.documentArchive.model.User;
-import pl.mm.documentArchive.service.BaseServiceTest;
 import pl.mm.documentArchive.service.user.UserAlreadyExists;
 import pl.mm.documentArchive.service.user.UserService;
 import pl.mm.documentArchive.service.dataProvider.UserTestDataProvider;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ITUserServiceTest extends BaseServiceTest {
 
