@@ -9,10 +9,9 @@ import java.util.UUID;
 
 public abstract class BaseDocumentArchiverService<T> implements IBasicDocumentArchiverService<T> {
 
-	@SuppressWarnings("WeakerAccess")
 	protected TransactionInfoRepository<T, Long> repository;
 
-	@SuppressWarnings({"unchecked", "WeakerAccess"})
+	@SuppressWarnings({"unchecked"})
 	protected T setDefaultVariables(TransactionInfo object) {
 		object.setUuid(UUID.randomUUID().toString());
 		object.setCreatedDateTime(new Timestamp(System.currentTimeMillis()));

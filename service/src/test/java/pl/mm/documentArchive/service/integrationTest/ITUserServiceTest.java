@@ -23,6 +23,16 @@ public class ITUserServiceTest extends BaseServiceTest {
 		userService.addUser(user);
 	}
 
+	@Test(dataProvider = USERS_DATA_PROVIDER_NAME, dependsOnMethods = {"createUser"})
+	public void findUserByUuid(User user) {
+		User userFoundByUserName = userService.findByUserName(user.getUserName());
+
+		User userFoundByUuid = userService.findByUuid(userFoundByUserName.getUuid(), User.class);
+
+		Assert.assertNotNull(userFoundByUuid);
+		Assert.assertEquals(user.getUserName(), userFoundByUuid.getUserName());
+	}
+
 	@Test(dataProvider = USERS_DATA_PROVIDER_NAME, dependsOnMethods = {"createUser"},
 			groups = {GROUP_CREATE_USER_AND_LOGIN})
 	public void simulateLogIn(User userToLogin) {
