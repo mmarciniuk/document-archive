@@ -59,7 +59,6 @@ public class UserService extends BaseDocumentArchiverService<User> implements Us
 		repository.delete(foundUser);
 	}
 
-	@SuppressWarnings("WeakerAccess")
 	@Transactional
 	public User findByUserName(String userName) {
 		return ((UserRepository) repository).findByUserName(userName).orElse(null);

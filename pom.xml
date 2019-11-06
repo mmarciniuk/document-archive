@@ -27,6 +27,10 @@
 		<java.version>1.8</java.version>
 
 		<docker.image.prefix>document-archive-db-mysql</docker.image.prefix>
+		<docker.container.run.env.MYSQL_USER>root</docker.container.run.env.MYSQL_USER>
+		<docker.container.run.env.MYSQL_ROOT_PASSWORD>secretPassword</docker.container.run.env.MYSQL_ROOT_PASSWORD>
+		<docker.container.run.ports.port>3337:3306</docker.container.run.ports.port>
+		<docker.container.run.wait.timeMs>15000</docker.container.run.wait.timeMs>
 	</properties>
 
 	<build>

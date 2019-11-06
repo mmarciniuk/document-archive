@@ -1,20 +1,13 @@
-package pl.mm.documentArchive.service.test;
+package pl.mm.documentArchive.service.integrationTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pl.mm.documentArchive.daoRepository.RoleRepository;
-import pl.mm.documentArchive.model.Role;
 import pl.mm.documentArchive.model.User;
-import pl.mm.documentArchive.service.BaseServiceTest;
 import pl.mm.documentArchive.service.user.UserAlreadyExists;
 import pl.mm.documentArchive.service.user.UserService;
-import pl.mm.documentArchive.service.dataProvider.UserTestDataProvider;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ITUserServiceTest extends BaseServiceTest {
 
@@ -23,18 +16,25 @@ public class ITUserServiceTest extends BaseServiceTest {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
-	private RoleRepository roleRepository;
-	@Autowired
 	private UserService userService;
 
-	@Test(dataProviderClass = UserTestDataProvider.class, dataProvider = UserTestDataProvider.USERS_DATA_PROVIDER_NAME,
-		groups = {GROUP_CREATE_USER_AND_LOGIN})
+	@Test(dataProvider = USERS_DATA_PROVIDER_NAME, groups = {GROUP_CREATE_USER_AND_LOGIN})
 	public void createUser(User user) throws UserAlreadyExists {
 		userService.addUser(user);
 	}
 
-	@Test(dataProviderClass = UserTestDataProvider.class, dataProvider = UserTestDataProvider.USERS_DATA_PROVIDER_NAME,
-		dependsOnMethods = {"createUser"}, groups = {GROUP_CREATE_USER_AND_LOGIN})
+	@Test(dataProvider = USERS_DATA_PROVIDER_NAME, dependsOnMethods = {"createUser"})
+	public void findUserByUuid(User user) {
+		User userFoundByUserName = userService.findByUserName(user.getUserName());
+
+		User userFoundByUuid = userService.findByUuid(userFoundByUserName.getUuid(), User.class);
+
+		Assert.assertNotNull(userFoundByUuid);
+		Assert.assertEquals(user.getUserName(), userFoundByUuid.getUserName());
+	}
+
+	@Test(dataProvider = USERS_DATA_PROVIDER_NAME, dependsOnMethods = {"createUser"},
+			groups = {GROUP_CREATE_USER_AND_LOGIN})
 	public void simulateLogIn(User userToLogin) {
 		UserDetails loadedUser = userService.loadUserByUsername(userToLogin.getUserName());
 		boolean isPasswordMatch = passwordEncoder.matches(userToLogin.getPassword(), loadedUser.getPassword());
@@ -42,8 +42,7 @@ public class ITUserServiceTest extends BaseServiceTest {
 		Assert.assertTrue(isPasswordMatch);
 	}
 
-	@Test(dataProviderClass = UserTestDataProvider.class, dataProvider = UserTestDataProvider.USERS_DATA_PROVIDER_NAME,
-			dependsOnMethods = {"simulateLogIn"})
+	@Test(dataProvider = USERS_DATA_PROVIDER_NAME, dependsOnMethods = {"simulateLogIn"})
 	public void deleteUser(User accountToRemove) {
 		userService.deleteUser(accountToRemove);
 	}
