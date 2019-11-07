@@ -16,8 +16,29 @@
 							<span>
 								<i class="fas fa-home"></i>
 							</span>
-                            Home
+                            Main page
                         </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuProfile"
+                           data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-info"
+                             aria-labelledby="navbarDropdownMenuProfile">
+                            <a class="dropdown-item waves-effect waves-light" href="#" th:href="@{/profile/user}"
+                               sec:authorize="isAuthenticated()">
+                                My account
+                            </a>
+                            <a class="dropdown-item waves-effect waves-light" href="#" sec:authorize="isAnonymous()">
+                                Log in
+                            </a>
+                            <a class="dropdown-item waves-effect waves-light" href="#"
+                               sec:authorize="isAuthenticated()">
+                                Log out
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </div>
