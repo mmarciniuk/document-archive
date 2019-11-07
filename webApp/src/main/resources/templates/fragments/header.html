@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<header xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <nav class="mb-1 navbar navbar-dark bg-primary navbar-expand-lg static-top" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="#" th:href="@{/}">
+                Document Archive
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">
+							<span>
+								<i class="fas fa-home"></i>
+							</span>
+                            Home
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
