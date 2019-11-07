@@ -9,6 +9,8 @@ import pl.mm.documentArchive.model.User;
 import pl.mm.documentArchive.service.BaseDocumentArchiverService;
 import pl.mm.documentArchive.service.user.UserService;
 
+import java.util.List;
+
 @Service(DocumentService.BEAN_NAME)
 public class DocumentService extends BaseDocumentArchiverService<Document> {
 
@@ -32,6 +34,11 @@ public class DocumentService extends BaseDocumentArchiverService<Document> {
 	@Transactional
 	public Document findByDocumentNameAndUserName(String documentName, String userName) {
 		return ((DocumentRepository) repository).findByDocumentNameAndUserName(documentName, userName).orElse(null);
+	}
+
+	@Transactional
+	public List<Document> findAllDocuments(String userName) {
+		return (List<Document>) ((DocumentRepository) repository).findAllDocuments(userName);
 	}
 
 	@Transactional
