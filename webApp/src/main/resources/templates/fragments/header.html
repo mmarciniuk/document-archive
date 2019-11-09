@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <header xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <nav class="mb-1 navbar navbar-dark bg-primary navbar-expand-lg static-top" role="navigation">
+    <nav id="navbar" class="mb-1 navbar navbar-dark bg-primary navbar-expand-lg static-top" role="navigation" onload="activateElementInNavbar('navbar')">
         <div class="container">
             <a class="navbar-brand" href="#" th:href="@{/}">
                 Document Archive
@@ -17,6 +17,14 @@
 								<i class="fas fa-home"></i>
 							</span>
                             Main page
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/about}">
+							<span>
+								<i class="fas fa-info"></i>
+							</span>
+                            About
                         </a>
                     </li>
                     <li class="nav-item dropdown">

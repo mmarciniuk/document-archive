@@ -1,0 +1,35 @@
+<!DOCTYPE HTML >
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html">
+</head>
+<body>
+<header th:replace="fragments/header.html">
+</header>
+<main id="main" class="flex-shrink-0">
+    <div id="divMain" class="container text-danger">
+        <div class="row">
+            <h2>General error occurred</h2>
+        </div>
+        <div class="row ">
+            <p th:text="${errorMsg}"></p>
+        </div>
+        <div class="row">
+            <p>
+                <a class="link" th:href="@{/}">
+                    <span>
+					    <i class="fas fa-home"></i>
+                    </span>
+                    Go back to main page
+                </a>
+            </p>
+        </div>
+        <div class="row">
+            <p>Not all functionalities were implemented in this application therefore, some actions might end with
+                error.</p>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer.html">
+</footer>
+</body>
+</html>
