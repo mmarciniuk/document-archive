@@ -1,12 +1,12 @@
-function activateElementInNavbar(elementId) {
+window.onload = function activateElementInNavbar() {
     var url = window.location.href;
     console.info("URL = '" + url + "'");
-    var navBar = document.getElementById(elementId);
 
-    if (navBar.tagName === "nav") {
-        
+    if (url.includes("about")) {
+        this.document.getElementById("headerAbout").className = "nav-item active";
+    } else if(url.includes("profile")) {
+        this.document.getElementById("headerProfile").className = "nav-item active";
     } else {
-        console.error("Provided element is not a 'nav' tag");
+        this.document.getElementById("headerMainPage").className = "nav-item active";
     }
-
 }
