@@ -4,13 +4,7 @@
 <body onload="activateElementInNavbar('navbar')">
 <header th:replace="fragments/header.html"></header>
 <main id="main" class="flex-shrink-0">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h2>Main Page</h2>
-            </div>
-        </div>
-    </div>
+    <div th:replace="'pages/' + ${page}"></div>
 </main>
 <footer th:replace="fragments/footer.html"></footer>
 </body>

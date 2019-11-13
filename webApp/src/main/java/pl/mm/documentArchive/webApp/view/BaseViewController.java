@@ -1,12 +1,36 @@
 package pl.mm.documentArchive.webApp.view;
 
-public abstract class BaseViewController {
+abstract class BaseViewController {
 
-	public static class RequestMappings {
-		public static final String BASE = "";
-		public static final String INDEX = BASE + "/index";
-		public static final String MAIN_PAGE = BASE + "/mainPage";
-		public static final String ABOUT = BASE + "/about";
+	static final String MAIN_VIEW_NAME = "index";
+
+	static class RequestMappings {
+		static final String BASE = "";
+		static final String INDEX = BASE + "/index";
+		static final String MAIN_PAGE = BASE + "/mainPage";
+		static final String ABOUT = BASE + "/about";
+	}
+
+	public enum AttributeNameForModels {
+		MAIN_PAGE("page", "mainPage"),
+		ABOUT("page", "about");
+
+		private String name;
+		private Object value;
+
+		AttributeNameForModels(String name, Object value) {
+			this.name = name;
+			this.value = value;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public Object getValue() {
+			return value;
+		}
+
 	}
 
 }
