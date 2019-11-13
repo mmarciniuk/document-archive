@@ -9,11 +9,14 @@ abstract class BaseViewController {
 		static final String INDEX = BASE + "/index";
 		static final String MAIN_PAGE = BASE + "/mainPage";
 		static final String ABOUT = BASE + "/about";
+		static final String PROFILE_BASE = BASE + "/profile";
+		static final String REGISTRATION_FROM = PROFILE_BASE + "/createAccount";
 	}
 
 	public enum AttributeNameForModels {
 		MAIN_PAGE("page", "mainPage"),
-		ABOUT("page", "about");
+		ABOUT("page", "about"),
+		REGISTRATION_FROM("page", "registrationForm");
 
 		private String name;
 		private Object value;

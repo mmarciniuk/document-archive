@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import static pl.mm.documentArchive.webApp.view.BaseViewController.AttributeNameForModels.*;
-
 @Controller
 @RequestMapping(BaseViewController.RequestMappings.BASE)
 public class NavbarViewController extends BaseViewController {
@@ -14,7 +12,7 @@ public class NavbarViewController extends BaseViewController {
 	@GetMapping(value = {RequestMappings.BASE, RequestMappings.INDEX, RequestMappings.MAIN_PAGE})
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView(MAIN_VIEW_NAME);
-		modelAndView.addObject(MAIN_PAGE.getName(), MAIN_PAGE.getValue());
+		modelAndView.addObject(AttributeNameForModels.MAIN_PAGE.getName(), AttributeNameForModels.MAIN_PAGE.getValue());
 
 		return modelAndView;
 	}
@@ -22,7 +20,16 @@ public class NavbarViewController extends BaseViewController {
 	@GetMapping(value = {RequestMappings.ABOUT})
 	public ModelAndView about() {
 		ModelAndView modelAndView = new ModelAndView(MAIN_VIEW_NAME);
-		modelAndView.addObject(ABOUT.getName(), ABOUT.getValue());
+		modelAndView.addObject(AttributeNameForModels.ABOUT.getName(), AttributeNameForModels.ABOUT.getValue());
+
+		return modelAndView;
+	}
+
+	@GetMapping(value = {RequestMappings.REGISTRATION_FROM})
+	public ModelAndView registrationForm() {
+		ModelAndView modelAndView = new ModelAndView(MAIN_VIEW_NAME);
+		modelAndView.addObject(AttributeNameForModels.REGISTRATION_FROM.getName(),
+				AttributeNameForModels.REGISTRATION_FROM.getValue());
 
 		return modelAndView;
 	}
