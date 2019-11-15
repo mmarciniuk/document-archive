@@ -1,4 +1,4 @@
-package pl.mm.documentArchive.webApp.view;
+package pl.mm.documentArchive.webApp.viewController;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
@@ -8,11 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class MyErrorViewController implements ErrorController {
+public class MyErrorController implements ErrorController {
 
 	public static class RequestMappings {
 		@SuppressWarnings("unused")
-		public static final String BASE = BaseViewController.RequestMappings.BASE;
+		public static final String BASE = pl.mm.documentArchive.webApp.viewController.utilities.RequestMappings.BASE;
 		@SuppressWarnings("WeakerAccess")
 		public static final String ERROR = "/error";
 	}

@@ -1,7 +1,7 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org">
     <div class="middle-box text-center loginscreen animated fadeInDown">
-        <form autocomplete="off" th:action="@{/profile/raciest}" method="post" class="form-horizontal" role="form"
-              data-toggle="validator">
+        <form autocomplete="off" th:action="@{/register/processRegistration}" th:object="${user}" method="post"
+              class="form-horizontal" role="form" data-toggle="validator">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -9,27 +9,28 @@
                     <hr>
                 </div>
             </div>
+
             <!-- First name -->
             <div class="row">
+
                 <div class="col-md-3 field-label-responsive">
                     <label for="firstName">First name</label>
                 </div>
+                <!-- First name -->
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                            <div class="input-group-addon" style="width: 2.6rem">
+                                <i class="fa fa-user"></i>
+                            </div>
                             <input type="text" name="firstName" class="form-control" id="firstName"
-                                   placeholder="First name" required autofocus>
+                                   th:field="*{firstName}" placeholder="First name" required autofocus>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put name validation error messages here -->
-                        </span>
-                    </div>
-                </div>
+                <!-- Validation error -->
+                <div th:if="${#fields.hasErrors('firstName')}"
+                     th:errors="*{firstName}" class="validation-message alert alert-danger" role="alert"></div>
             </div>
 
             <!-- Last name -->
@@ -37,15 +38,19 @@
                 <div class="col-md-3 field-label-responsive">
                     <label for="lastName">Last name</label>
                 </div>
+                <!-- Last name -->
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                            <input type="text" name="lastName" class="form-control" id="lastName"
+                            <div class="input-group-addon" style="width: 2.6rem">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <input type="text" name="lastName" class="form-control" id="lastName" th:field="*{lastName}"
                                    placeholder="Last name" required autofocus>
                         </div>
                     </div>
                 </div>
+                <!-- Validation error -->
                 <div class="col-md-3">
                     <div class="form-control-feedback">
                         <span class="text-danger align-middle">
@@ -55,19 +60,24 @@
                 </div>
             </div>
 
+            <!-- Email address-->
             <div class="row">
                 <div class="col-md-3 field-label-responsive">
                     <label for="email">E-Mail Address</label>
                 </div>
+                <!-- Email address-->
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <input type="text" name="email" class="form-control" id="email"
+                            <div class="input-group-addon" style="width: 2.6rem">
+                                <i class="fa fa-at"></i>
+                            </div>
+                            <input type="text" name="email" class="form-control" id="email" th:field="*{addressEmail}"
                                    placeholder="you@example.com" required autofocus>
                         </div>
                     </div>
                 </div>
+                <!-- Validation error -->
                 <div class="col-md-3">
                     <div class="form-control-feedback">
                         <span class="text-danger align-middle">
@@ -76,19 +86,52 @@
                     </div>
                 </div>
             </div>
+
+            <!-- User name-->
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="userName">User name</label>
+                </div>
+                <!-- User name-->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem">
+                                <i class="fa fa-at"></i>
+                            </div>
+                            <input type="text" name="userName" class="form-control" id="userName" th:field="*{userName}"
+                                   placeholder="you@example.com" required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <!-- Validation error -->
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password -->
             <div class="row">
                 <div class="col-md-3 field-label-responsive">
                     <label for="password">Password</label>
                 </div>
+                <!-- Password -->
                 <div class="col-md-6">
                     <div class="form-group has-danger">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                            <div class="input-group-addon" style="width: 2.6rem">
+                                <i class="fa fa-key"></i>
+                            </div>
                             <input type="password" name="password" class="form-control" id="password"
-                                   placeholder="Password" required>
+                                   th:field="*{password}" placeholder="Password" required>
                         </div>
                     </div>
                 </div>
+                <!-- Validation error -->
                 <div class="col-md-3">
                     <div class="form-control-feedback">
                         <span class="text-danger align-middle">
@@ -99,7 +142,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3 field-label-responsive">
-                    <label for="password">Confirm Password</label>
+                    <label for="password">Confirm Password - INACTIVE !!!</label>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
