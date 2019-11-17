@@ -12,7 +12,6 @@
 
             <!-- First name -->
             <div class="row">
-
                 <div class="col-md-3 field-label-responsive">
                     <label for="firstName">First name</label>
                 </div>
@@ -29,8 +28,13 @@
                     </div>
                 </div>
                 <!-- Validation error -->
-                <div th:if="${#fields.hasErrors('firstName')}"
-                     th:errors="*{firstName}" class="validation-message alert alert-danger" role="alert"></div>
+                <div class="col-md-3" th:if="${#fields.hasErrors('firstName')}">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle" th:errors="*{firstName}">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <!-- Last name -->
@@ -51,9 +55,9 @@
                     </div>
                 </div>
                 <!-- Validation error -->
-                <div class="col-md-3">
+                <div class="col-md-3" th:if="${#fields.hasErrors('lastName')}">
                     <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
+                        <span class="text-danger align-middle" th:errors="*{lastName}">
                             <!-- Put name validation error messages here -->
                         </span>
                     </div>
@@ -78,10 +82,10 @@
                     </div>
                 </div>
                 <!-- Validation error -->
-                <div class="col-md-3">
+                <div class="col-md-3" th:if="${#fields.hasErrors('addressEmail')}">
                     <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put e-mail validation error messages here -->
+                        <span class="text-danger align-middle" th:errors="*{addressEmail}">
+                            <!-- Put name validation error messages here -->
                         </span>
                     </div>
                 </div>
@@ -105,10 +109,10 @@
                     </div>
                 </div>
                 <!-- Validation error -->
-                <div class="col-md-3">
+                <div class="col-md-3" th:if="${#fields.hasErrors('userName')}">
                     <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put e-mail validation error messages here -->
+                        <span class="text-danger align-middle" th:errors="*{userName}">
+                            <!-- Put name validation error messages here -->
                         </span>
                     </div>
                 </div>
@@ -132,18 +136,20 @@
                     </div>
                 </div>
                 <!-- Validation error -->
-                <div class="col-md-3">
+                <div class="col-md-3" th:if="${#fields.hasErrors('password')}">
                     <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <i class="fa fa-close"> Example Error Message</i>
+                        <span class="text-danger align-middle" th:errors="*{password}">
+                            <!-- Put name validation error messages here -->
                         </span>
                     </div>
                 </div>
             </div>
+            <!-- Password confirm -->
             <div class="row">
                 <div class="col-md-3 field-label-responsive">
                     <label for="password">Confirm Password - INACTIVE !!!</label>
                 </div>
+                <!-- Password confirm -->
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
@@ -153,6 +159,14 @@
                             <input type="password" name="password-confirmation" class="form-control"
                                    id="password-confirm" placeholder="Password" required>
                         </div>
+                    </div>
+                </div>
+                <!-- Validation error -->
+                <div class="col-md-3" th:if="${#fields.hasErrors('userName')}">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle" th:errors="*{userName}">
+                            <!-- Put name validation error messages here -->
+                        </span>
                     </div>
                 </div>
             </div>
