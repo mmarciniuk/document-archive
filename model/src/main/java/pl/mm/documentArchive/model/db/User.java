@@ -27,8 +27,9 @@ public class User extends TransactionInfo {
 	@Column(name = "Password", nullable = false, length = 80)
 	private String password;
 
-	@Length(min = 5, max = 80, message = "Password need contains at least 5 characters and at most 80 characters.")
-	@NotBlank(message = "Password cannot be empty.")
+	// ToDo Create CRM model for view
+	//@Length(min = 5, max = 80, message = "Password need contains at least 5 characters and at most 80 characters.")
+	//@NotBlank(message = "Password cannot be empty.")
 	@Transient
 	private String passwordConfirm;
 
