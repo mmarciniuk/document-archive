@@ -65,6 +65,12 @@ public class UserService extends BaseDocumentArchiverService<User> implements Us
 	}
 
 	@Transactional
+	public boolean checkIfUserExists(User user) {
+		User userExisting = this.findByUserName(user.getUserName());
+		return userExisting != null;
+	}
+
+	@Transactional
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		User user = ((UserRepository) repository).findByUserName(userName).orElse(null);

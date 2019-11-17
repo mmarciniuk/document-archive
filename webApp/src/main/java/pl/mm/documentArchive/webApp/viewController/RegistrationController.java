@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.service.user.UserAlreadyExists;
 import pl.mm.documentArchive.service.user.UserService;
 import pl.mm.documentArchive.webApp.viewController.utilities.AttributeNameWithValueForView;
 
@@ -42,7 +43,7 @@ public class RegistrationController extends BaseViewController {
 
 	@PostMapping(RequestMappings.PROCESS_REGISTRATION)
 	public String processRegistration(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
-	                                  Model model) {
+	                                  Model model) throws UserAlreadyExists {
 		model.addAttribute(AttributeNameWithValueForView.REGISTRATION_FROM_PAGE.getName(),
 				AttributeNameWithValueForView.REGISTRATION_FROM_PAGE.getValue());
 
@@ -50,7 +51,22 @@ public class RegistrationController extends BaseViewController {
 			return MAIN_VIEW_NAME;
 		}
 
-		return MAIN_VIEW_NAME;
+		if (userService.checkIfUserExists(user)) {
+			model.addAttribute(AttributeNameWithValueForView.USER_MODEL.getName(),
+					AttributeNameWithValueForView.USER_MODEL.getValue());
+
+			model.addAttribute(AttributeNameWithValueForView.REGISTRATION_FORM_ERROR.getName(),
+					"User name already exists.");
+
+			return MAIN_VIEW_NAME;
+		} else {
+			userService.addUser(user);
+
+			model.addAttribute(AttributeNameWithValueForView.REGISTRATION_CONFIRMATION_PAGE.getName(),
+					AttributeNameWithValueForView.REGISTRATION_CONFIRMATION_PAGE.getValue());
+
+			return MAIN_VIEW_NAME;
+		}
 	}
 
 }
