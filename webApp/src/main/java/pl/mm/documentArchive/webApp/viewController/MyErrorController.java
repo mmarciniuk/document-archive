@@ -3,16 +3,18 @@ package pl.mm.documentArchive.webApp.viewController;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+@RequestMapping(MyErrorController.RequestMappings.BASE)
 @Controller
 public class MyErrorController implements ErrorController {
 
-	public static class RequestMappings {
+	static class RequestMappings {
 		@SuppressWarnings("unused")
-		public static final String BASE = pl.mm.documentArchive.webApp.viewController.utilities.RequestMappings.BASE;
+		static final String BASE = "";
 		@SuppressWarnings("WeakerAccess")
 		public static final String ERROR = "/error";
 	}
