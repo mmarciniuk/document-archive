@@ -12,22 +12,34 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.mm.documentArchive.model.db.User;
 import pl.mm.documentArchive.service.user.UserAlreadyExists;
 import pl.mm.documentArchive.service.user.UserService;
-import pl.mm.documentArchive.webApp.viewController.utilities.AttributeNameWithValueForView;
+import pl.mm.documentArchive.webApp.viewController.utilities.attribiutesForView.AttributeNameWithValueForView;
 
 import javax.validation.Valid;
 
-@RequestMapping(RegistrationController.RequestMappings.BASE)
+@RequestMapping(UserController.RequestMappings.BASE)
 @Controller
-public class RegistrationController extends BaseViewController {
+public class UserController extends BaseViewController {
 
-	static class RequestMappings {
-		static final String BASE = "/register";
-		static final String REGISTRATION_FROM = "/createAccount";
+	public static class RequestMappings {
+		public static final String BASE = "/user";
+		public static final String REGISTRATION_FROM = "/createAccount";
 		static final String PROCESS_REGISTRATION = "/processRegistration";
+		public static final String LOGIN_FROM = "/login";
+		public static final String PROCESS_LOGIN = "processLogin";
 	}
 
 	@Autowired
 	private UserService userService;
+
+	@GetMapping(RequestMappings.LOGIN_FROM)
+	public ModelAndView loginForm() {
+		ModelAndView modelAndView = new ModelAndView(MAIN_VIEW_NAME);
+
+		modelAndView.addObject(AttributeNameWithValueForView.LOGIN_FROM.getName(),
+				AttributeNameWithValueForView.LOGIN_FROM.getValue());
+
+		return modelAndView;
+	}
 
 	@GetMapping(RequestMappings.REGISTRATION_FROM)
 	public ModelAndView registrationForm() {

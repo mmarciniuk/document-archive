@@ -38,11 +38,12 @@
                                sec:authorize="isAuthenticated()">
                                 My account
                             </a>
-                            <a class="dropdown-item waves-effect waves-light" th:href="@{/register/createAccount}"
+                            <a class="dropdown-item waves-effect waves-light" th:href="@{/user/createAccount}"
                                sec:authorize="isAnonymous()">
                                 Create account
                             </a>
-                            <a class="dropdown-item waves-effect waves-light" href="#" sec:authorize="isAnonymous()">
+                            <a class="dropdown-item waves-effect waves-light" href="#" sec:authorize="isAnonymous()"
+                               th:href="@{/user/login}">
                                 Log in
                             </a>
                             <a class="dropdown-item waves-effect waves-light" href="#"

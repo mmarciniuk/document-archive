@@ -1,4 +1,4 @@
-package pl.mm.documentArchive.webApp.viewController.utilities;
+package pl.mm.documentArchive.webApp.viewController.utilities.attribiutesForView;
 
 import pl.mm.documentArchive.model.db.User;
 
@@ -8,7 +8,8 @@ public enum AttributeNameWithValueForView {
 	MAIN_PAGE("page", "mainPage"),
 	ABOUT_PAGE("page", "about"),
 	REGISTRATION_FROM_PAGE("page", "user/registrationForm"),
-	REGISTRATION_CONFIRMATION_PAGE("page", "user/registrationConformation");
+	REGISTRATION_CONFIRMATION_PAGE("page", "user/registrationConformation"),
+	LOGIN_FROM("page", "user/loginForm");
 
 	private String name;
 	private Object value;

@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import pl.mm.documentArchive.webApp.viewController.utilities.AttributeNameWithValueForView;
+import pl.mm.documentArchive.webApp.viewController.utilities.attribiutesForView.AttributeNameWithValueForView;
 
 @RequestMapping(IndexController.RequestMappings.BASE)
 @Controller
 public class IndexController extends BaseViewController {
 
-	static class RequestMappings {
-		static final String BASE = "";
+	public static class RequestMappings {
+		public static final String BASE = "";
 		static final String INDEX = "/index";
 		static final String MAIN_PAGE = "/mainPage";
 		static final String ABOUT = "/about";
