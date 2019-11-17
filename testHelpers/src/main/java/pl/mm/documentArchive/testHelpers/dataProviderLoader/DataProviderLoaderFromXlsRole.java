@@ -1,7 +1,7 @@
 package pl.mm.documentArchive.testHelpers.dataProviderLoader;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import pl.mm.documentArchive.model.Role;
+import pl.mm.documentArchive.model.db.Role;
 
 public class DataProviderLoaderFromXlsRole extends DataProviderLoaderFromXls<Role> {
 

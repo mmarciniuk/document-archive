@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mm.documentArchive.daoRepository.RoleRepository;
 import pl.mm.documentArchive.daoRepository.UserRepository;
-import pl.mm.documentArchive.model.Role;
-import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.model.db.Role;
+import pl.mm.documentArchive.model.db.User;
 import pl.mm.documentArchive.service.BaseDocumentArchiverService;
 
 import java.util.ArrayList;
@@ -38,8 +38,8 @@ public class UserService extends BaseDocumentArchiverService<User> implements Us
 
 	@Transactional
 	public void addUser(User user) throws UserAlreadyExists {
-		User foundUser = ((UserRepository)repository).findByUserName(user.getUserName()).orElse(null);
-		if(foundUser == null) {
+		User foundUser = ((UserRepository) repository).findByUserName(user.getUserName()).orElse(null);
+		if (foundUser == null) {
 			Role userRole = roleRepository.findByRoleName("USER").orElse(null);
 			List<Role> roles = new ArrayList<>();
 			roles.add(userRole);
@@ -68,6 +68,11 @@ public class UserService extends BaseDocumentArchiverService<User> implements Us
 	public boolean checkIfUserExists(User user) {
 		User userExisting = this.findByUserName(user.getUserName());
 		return userExisting != null;
+	}
+
+	@Transactional
+	public List<User> getAllUsers() {
+		return (List<User>) repository.findAll();
 	}
 
 	@Transactional

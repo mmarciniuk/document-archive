@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.model.db.User;
 import pl.mm.documentArchive.service.user.UserAlreadyExists;
 import pl.mm.documentArchive.service.user.UserService;
 import pl.mm.documentArchive.webApp.viewController.utilities.AttributeNameWithValueForView;

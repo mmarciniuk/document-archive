@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.model.db.User;
 import pl.mm.documentArchive.service.user.UserAlreadyExists;
 import pl.mm.documentArchive.service.user.UserService;
 

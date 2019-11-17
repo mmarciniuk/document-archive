@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 import pl.mm.documentArchive.daoRepository.DocumentRepository;
 import pl.mm.documentArchive.daoRepository.UserRepository;
-import pl.mm.documentArchive.model.Document;
-import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.model.db.Document;
+import pl.mm.documentArchive.model.db.User;
 
 public class ITDocumentRepositoryTest extends BaseDaoRepositoryTest {
 

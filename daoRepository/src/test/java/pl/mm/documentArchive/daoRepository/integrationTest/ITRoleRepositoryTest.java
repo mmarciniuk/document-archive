@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.mm.documentArchive.daoRepository.RoleRepository;
-import pl.mm.documentArchive.model.Role;
+import pl.mm.documentArchive.model.db.Role;
 
 import java.util.ArrayList;
 import java.util.List;

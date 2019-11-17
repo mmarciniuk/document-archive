@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mm.documentArchive.daoRepository.DocumentRepository;
-import pl.mm.documentArchive.model.Document;
-import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.model.db.Document;
+import pl.mm.documentArchive.model.db.User;
 import pl.mm.documentArchive.service.BaseDocumentArchiverService;
 import pl.mm.documentArchive.service.user.UserService;
 

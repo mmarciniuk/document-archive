@@ -13,10 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 public class MyErrorController implements ErrorController {
 
 	static class RequestMappings {
-		@SuppressWarnings("unused")
 		static final String BASE = "";
-		@SuppressWarnings("WeakerAccess")
-		public static final String ERROR = "/error";
+		static final String ERROR = "/error";
 	}
 
 	@GetMapping({RequestMappings.ERROR})

@@ -1,7 +1,9 @@
-package pl.mm.documentArchive.model;
+package pl.mm.documentArchive.model.db;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import pl.mm.documentArchive.model.db.Document;
+import pl.mm.documentArchive.model.db.TransactionInfo;
 
 import javax.persistence.*;
 

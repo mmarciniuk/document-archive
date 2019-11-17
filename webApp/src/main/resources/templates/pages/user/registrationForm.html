@@ -155,7 +155,7 @@
             <!-- Password confirm -->
             <div class="row">
                 <div class="col-md-3 field-label-responsive">
-                    <label for="password">Confirm Password - INACTIVE !!!</label>
+                    <label for="password">Confirm Password</label>
                 </div>
                 <!-- Password confirm -->
                 <div class="col-md-6">
@@ -165,14 +165,14 @@
                                 <i class="fas fa-redo"></i>
                             </div>
                             <input type="password" name="password-confirmation" class="form-control"
-                                   id="password-confirm" placeholder="Password" required>
+                                   th:field="*{passwordConfirm}" id="password-confirm" placeholder="Password" required>
                         </div>
                     </div>
                 </div>
                 <!-- Validation error -->
-                <div class="col-md-3" th:if="${#fields.hasErrors('password')}">
+                <div class="col-md-3" th:if="${#fields.hasErrors('passwordConfirm')}">
                     <div class="form-control-feedback">
-                        <span class="text-danger align-middle" th:errors="*{password}">
+                        <span class="text-danger align-middle" th:errors="*{passwordConfirm}">
                             <!-- Put name validation error messages here -->
                         </span>
                     </div>

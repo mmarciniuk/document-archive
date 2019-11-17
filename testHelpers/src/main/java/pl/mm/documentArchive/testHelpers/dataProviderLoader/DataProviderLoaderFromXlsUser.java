@@ -2,8 +2,8 @@ package pl.mm.documentArchive.testHelpers.dataProviderLoader;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import pl.mm.documentArchive.model.Role;
-import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.model.db.Role;
+import pl.mm.documentArchive.model.db.User;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

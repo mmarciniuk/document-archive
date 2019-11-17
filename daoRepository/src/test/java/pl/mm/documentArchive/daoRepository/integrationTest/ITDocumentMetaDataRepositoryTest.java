@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 import pl.mm.documentArchive.daoRepository.DocumentMetaDataRepository;
 import pl.mm.documentArchive.daoRepository.DocumentRepository;
-import pl.mm.documentArchive.model.Document;
-import pl.mm.documentArchive.model.DocumentMetaData;
+import pl.mm.documentArchive.model.db.Document;
+import pl.mm.documentArchive.model.db.DocumentMetaData;
 
 public class ITDocumentMetaDataRepositoryTest extends BaseDaoRepositoryTest {
 

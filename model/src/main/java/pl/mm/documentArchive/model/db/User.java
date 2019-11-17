@@ -1,4 +1,4 @@
-package pl.mm.documentArchive.model;
+package pl.mm.documentArchive.model.db;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,6 +26,11 @@ public class User extends TransactionInfo {
 	@NotBlank(message = "Password cannot be empty.")
 	@Column(name = "Password", nullable = false, length = 80)
 	private String password;
+
+	@Length(min = 5, max = 80, message = "Password need contains at least 5 characters and at most 80 characters.")
+	@NotBlank(message = "Password cannot be empty.")
+	@Transient
+	private String passwordConfirm;
 
 	@Length(min = 1, max = 50, message = "First name need contains at least 1 character and at most 50 characters.")
 	@NotBlank(message = "First name cannot be empty.")

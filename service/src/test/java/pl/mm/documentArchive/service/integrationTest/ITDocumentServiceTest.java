@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pl.mm.documentArchive.model.Document;
+import pl.mm.documentArchive.model.db.Document;
 import pl.mm.documentArchive.service.document.DocumentService;
 import pl.mm.documentArchive.service.document.IncorrectOwnerOfDocument;
 

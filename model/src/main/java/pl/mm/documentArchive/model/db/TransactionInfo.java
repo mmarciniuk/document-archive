@@ -1,4 +1,4 @@
-package pl.mm.documentArchive.model;
+package pl.mm.documentArchive.model.db;
 
 import lombok.Data;
 

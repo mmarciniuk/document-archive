@@ -1,6 +1,6 @@
 package pl.mm.documentArchive.webApp.viewController.utilities;
 
-import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.model.db.User;
 
 public enum AttributeNameWithValueForView {
 	USER_MODEL("user", new User()),

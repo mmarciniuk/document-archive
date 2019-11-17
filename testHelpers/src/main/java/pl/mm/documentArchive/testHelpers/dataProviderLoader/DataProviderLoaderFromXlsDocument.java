@@ -3,8 +3,8 @@ package pl.mm.documentArchive.testHelpers.dataProviderLoader;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.springframework.core.io.ClassPathResource;
-import pl.mm.documentArchive.model.Document;
-import pl.mm.documentArchive.model.User;
+import pl.mm.documentArchive.model.db.Document;
+import pl.mm.documentArchive.model.db.User;
 
 import java.sql.Timestamp;
 import java.util.Objects;

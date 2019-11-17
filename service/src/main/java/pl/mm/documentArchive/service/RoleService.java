@@ -3,7 +3,7 @@ package pl.mm.documentArchive.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.mm.documentArchive.daoRepository.RoleRepository;
-import pl.mm.documentArchive.model.Role;
+import pl.mm.documentArchive.model.db.Role;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.mm.documentArchive.model.Role;
+import pl.mm.documentArchive.model.db.Role;
 import pl.mm.documentArchive.service.RoleService;
 
 import java.util.List;

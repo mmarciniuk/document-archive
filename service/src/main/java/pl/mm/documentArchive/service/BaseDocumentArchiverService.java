@@ -2,7 +2,7 @@ package pl.mm.documentArchive.service;
 
 import org.springframework.transaction.annotation.Transactional;
 import pl.mm.documentArchive.daoRepository.TransactionInfoRepository;
-import pl.mm.documentArchive.model.TransactionInfo;
+import pl.mm.documentArchive.model.db.TransactionInfo;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -12,6 +12,7 @@ public abstract class BaseDocumentArchiverService<T> implements IBasicDocumentAr
 	protected TransactionInfoRepository<T, Long> repository;
 
 	@SuppressWarnings({"unchecked"})
+	@Transactional
 	protected T setDefaultVariables(TransactionInfo object) {
 		object.setUuid(UUID.randomUUID().toString());
 		object.setCreatedDateTime(new Timestamp(System.currentTimeMillis()));

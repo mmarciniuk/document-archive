@@ -3,7 +3,7 @@ package pl.mm.documentArchive.daoRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import pl.mm.documentArchive.model.Role;
+import pl.mm.documentArchive.model.db.Role;
 
 import java.util.List;
 import java.util.Optional;
